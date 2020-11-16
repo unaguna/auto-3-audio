@@ -6,6 +6,9 @@
   /** 再生するオーディオ要素 */
   let mainAudio: HTMLAudioElement;
 
+  /** ON/OFF スイッチ */
+  let autoAudioPower: HTMLInputElement;
+
   /**
    * 再生開始条件を満たすかどうかを返す。
    */
@@ -22,7 +25,7 @@
   function intervalFunction(): void {
     console.debug(`startConditionSatisfied() = ${!!startConditionSatisfied()}`);
 
-    if(mainAudio.paused && startConditionSatisfied()) {
+    if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied()) {
       console.debug("play()");
       mainAudio.play();
     }
@@ -44,5 +47,7 @@
   window.onload = function(){
     mainAudio = document.querySelector<HTMLAudioElement>("#mainAudio")!
     mainAudio.onloadeddata = onLoadAudio;
+
+    autoAudioPower = document.querySelector<HTMLInputElement>("#autoAudioPower")!;
   };
 })();

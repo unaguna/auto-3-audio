@@ -10,11 +10,33 @@
   let autoAudioPower: HTMLInputElement;
 
   /**
+   * 0埋めする
+   * 
+   * @param n 0埋め対象の文字列
+   */
+  function zeroPadding(n: string | number) {
+    return (`00` + n).slice(-2);
+  };
+
+  /**
+   * 現在時刻を返す。
+   */
+  function getTime(): string {
+    // TODO: 本実装
+    return (window as any).time || "";
+
+    const date = new Date();
+    return `${zeroPadding(date.getHours())}:${zeroPadding(date.getMinutes())}`;
+  }
+
+  /**
    * 再生開始条件を満たすかどうかを返す。
    */
   function startConditionSatisfied(): boolean {
-    // TODO: 本実装
-    return (window as any).startConditon;
+    const time = getTime();
+    console.debug(`getTime() = ${time}`);
+
+    return time.indexOf("3") >= 0;
   }
 
   /**

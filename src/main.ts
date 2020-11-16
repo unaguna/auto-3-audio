@@ -10,6 +10,13 @@
   let autoAudioPower: HTMLInputElement;
 
   /**
+   * 最後に自動再生した時の時刻
+   * 
+   * 手動で停止した場合、同じ時刻である間は再び再生しない。
+   */
+  let lastAutoPlayedTime: string | null;
+
+  /**
    * 0埋めする
    * 
    * @param n 0埋め対象の文字列
@@ -47,7 +54,8 @@
   function intervalFunction(): void {
     console.debug(`startConditionSatisfied() = ${!!startConditionSatisfied()}`);
 
-    if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied()) {
+    if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied() && lastAutoPlayedTime !== getTime()) {
+      lastAutoPlayedTime = getTime();
       console.debug("play()");
       mainAudio.play();
     }

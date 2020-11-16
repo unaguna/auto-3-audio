@@ -9,6 +9,9 @@
   /** ON/OFF スイッチ */
   let autoAudioPower: HTMLInputElement;
 
+  /** 時計表示 */
+  let clock: HTMLDivElement;
+
   /**
    * 最後に自動再生した時の時刻
    * 
@@ -53,8 +56,12 @@
    */
   function intervalFunction(): void {
     console.debug(`startConditionSatisfied() = ${!!startConditionSatisfied()}`);
+    const now = getTime();
 
-    if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied() && lastAutoPlayedTime !== getTime()) {
+    // 時計を更新
+    clock.innerText = now;
+
+    if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied() && lastAutoPlayedTime !== now) {
       lastAutoPlayedTime = getTime();
       console.debug("play()");
       mainAudio.play();
@@ -79,5 +86,7 @@
     mainAudio.onloadeddata = onLoadAudio;
 
     autoAudioPower = document.querySelector<HTMLInputElement>("#autoAudioPower")!;
+
+    clock = document.querySelector<HTMLDivElement>("#clock")!
   };
 })();

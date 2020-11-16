@@ -23,6 +23,7 @@
     console.debug(`startConditionSatisfied() = ${!!startConditionSatisfied()}`);
 
     if(mainAudio.paused && startConditionSatisfied()) {
+      console.debug("play()");
       mainAudio.play();
     }
     

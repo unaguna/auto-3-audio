@@ -69,24 +69,16 @@
     
   }
 
-  /**
-   * 音声ファイルがロードされたときに呼び出す。
-   */
-  function onLoadAudio(): void {
+  window.onload = function(){
+    mainAudio = document.querySelector<HTMLAudioElement>("#mainAudio")!
+
+    autoAudioPower = document.querySelector<HTMLInputElement>("#autoAudioPower")!;
+
+    clock = document.querySelector<HTMLDivElement>("#clock")!
 
     // 監視するインターバルがない場合、インターバルを開始
     if(intervalId == null) {
       setInterval(intervalFunction, 100);
     }
-    
-  }
-
-  window.onload = function(){
-    mainAudio = document.querySelector<HTMLAudioElement>("#mainAudio")!
-    mainAudio.onloadeddata = onLoadAudio;
-
-    autoAudioPower = document.querySelector<HTMLInputElement>("#autoAudioPower")!;
-
-    clock = document.querySelector<HTMLDivElement>("#clock")!
   };
 })();

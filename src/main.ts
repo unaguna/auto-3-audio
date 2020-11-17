@@ -44,9 +44,6 @@
    * 現在時刻を返す。
    */
   function getTime(): string {
-    // TODO: 本実装
-    return (window as any).time || "";
-
     const date = new Date();
     return `${zeroPadding(date.getHours())}:${zeroPadding(date.getMinutes())}`;
   }

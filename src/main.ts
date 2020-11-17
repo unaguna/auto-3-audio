@@ -9,8 +9,17 @@
   /** ON/OFF スイッチ */
   let autoAudioPower: HTMLInputElement;
 
-  /** 時計表示 */
-  let clock: HTMLDivElement;
+  /** 時計（時、10の位） */
+  let clockDisitH1: HTMLImageElement;
+
+  /** 時計（時、1の位） */
+  let clockDisitH2: HTMLImageElement;
+
+  /** 時計（分、10の位） */
+  let clockDisitM1: HTMLImageElement;
+
+  /** 時計（分、1の位） */
+  let clockDisitM2: HTMLImageElement;
 
   /**
    * 最後に自動再生した時の時刻
@@ -50,6 +59,18 @@
   }
 
   /**
+   * 時計を更新する
+   * 
+   * @param time "hh:mm" 形式の時刻
+   */
+  function updClock(time: string): void {
+    clockDisitH1.src = `./img/d${time[0] ?? "h"}.png`;
+    clockDisitH2.src = `./img/d${time[1] ?? "h"}.png`;
+    clockDisitM1.src = `./img/d${time[3] ?? "h"}.png`;
+    clockDisitM2.src = `./img/d${time[4] ?? "h"}.png`;
+  }
+
+  /**
    * 定期的に実行する関数。
    * 
    * 時刻を監視し音声を再生する。
@@ -59,7 +80,7 @@
     const now = getTime();
 
     // 時計を更新
-    clock.innerText = now;
+    updClock(now);
 
     if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied() && lastAutoPlayedTime !== now) {
       lastAutoPlayedTime = getTime();
@@ -74,7 +95,10 @@
 
     autoAudioPower = document.querySelector<HTMLInputElement>("#autoAudioPower")!;
 
-    clock = document.querySelector<HTMLDivElement>("#clock")!
+    clockDisitH1 = document.querySelector<HTMLImageElement>("#clockDisitH1")!
+    clockDisitH2 = document.querySelector<HTMLImageElement>("#clockDisitH2")!
+    clockDisitM1 = document.querySelector<HTMLImageElement>("#clockDisitM1")!
+    clockDisitM2 = document.querySelector<HTMLImageElement>("#clockDisitM2")!
 
     // 監視するインターバルがない場合、インターバルを開始
     if(intervalId == null) {

@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+@media screen { #selectSoundFile { display: none; } }
+
+.file_btn {
+    color: white;
+    background-color: rgb(52,99,273);
+    padding: 0 6px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#clock {
+    font-size: 42pt;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#clock .clock__digit {
+    width: 20%;
+    height: auto;
+    display: inline;
+}
+
+#clock .clock__separator {
+    width: 4%;
+    height: auto;
+    display: inline;
+}
+
+.containt_line {
+    text-align: center;
+}

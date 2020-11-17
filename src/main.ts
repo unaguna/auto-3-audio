@@ -6,6 +6,9 @@
   /** 再生するオーディオ要素 */
   let mainAudio: HTMLAudioElement;
 
+  /** オーディオファイル選択 */
+  let selectSoundFile: HTMLInputElement;
+
   /** ON/OFF スイッチ */
   let autoAudioPower: HTMLInputElement;
 
@@ -94,6 +97,20 @@
     mainAudio = document.querySelector<HTMLAudioElement>("#mainAudio")!
 
     autoAudioPower = document.querySelector<HTMLInputElement>("#autoAudioPower")!;
+
+    selectSoundFile = document.querySelector<HTMLInputElement>("#selectSoundFile")!;
+    selectSoundFile.onchange = function(event: Event) {
+      const file = (event?.target as HTMLInputElement)?.files?.[0];
+      if (!(file instanceof File)) {
+          window.alert('Please upload file.');
+      } else if (file.type.indexOf('audio') === -1) {
+          window.alert('Please upload audio file.');
+      } else {
+        const src = window.URL.createObjectURL(file);
+        mainAudio.src = src;
+        mainAudio.pause();
+      }
+    }
 
     clockDisitH1 = document.querySelector<HTMLImageElement>("#clockDisitH1")!
     clockDisitH2 = document.querySelector<HTMLImageElement>("#clockDisitH2")!

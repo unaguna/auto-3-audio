@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+@media screen { #selectSoundFile { display: none; } }
+
+.file_btn {
+    color: white;
+    background-color: rgb(52,99,273);
+    padding: 0 6px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
 body {
     margin: 0;
     max-width: 400px;

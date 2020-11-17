@@ -10,6 +10,9 @@
 <body>
     <h1>現在時刻に3が入るたびにデビルマンのうたが流れるアプリ</h1>
     <div class="containt_line">
+        再生する音を選ぶ: <label for="selectSoundFile"><span class="file_btn">Select</span><input type="file" id="selectSoundFile" accept="audio/*"></label>
+    </div>
+    <div class="containt_line">
         現在時刻に3が入るたびに流す: <input id="autoAudioPower" type="checkbox" true />
     </div>
     <div id="clock" class="containt_line">
@@ -20,7 +23,7 @@
         <img class="clock__digit" id="clockDisitM2" src="./img/dh.png" />
     </div>
     <div class="containt_line">
-        <audio id="mainAudio" src="./sample.mp3" controls preload></audio>
+        <audio id="mainAudio" controls preload></audio>
     </div>
 </body>
 </html>

@@ -53,7 +53,6 @@
    */
   function startConditionSatisfied(): boolean {
     const time = getTime();
-    console.debug(`getTime() = ${time}`);
 
     return time.indexOf("3") >= 0;
   }
@@ -76,7 +75,6 @@
    * 時刻を監視し音声を再生する。
    */
   function intervalFunction(): void {
-    console.debug(`startConditionSatisfied() = ${!!startConditionSatisfied()}`);
     const now = getTime();
 
     // 時計を更新
@@ -84,7 +82,6 @@
 
     if(autoAudioPower.checked && mainAudio.paused && startConditionSatisfied() && lastAutoPlayedTime !== now) {
       lastAutoPlayedTime = getTime();
-      console.debug("play()");
       mainAudio.play();
     }
     
